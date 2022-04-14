@@ -32,12 +32,14 @@ class GameScene {
 	/// </summary>
 	void Initialize();
 	uint32_t textureHandle_ = 0;
-	//ワールドトランスフォーム
-	WorldTransform worldTransform_;
-	//ビュープロジェクション
-	ViewProjection viewProjection_; 
-	//3dモデル
+	Sprite* sprite_ = nullptr;
 	Model* model_ = nullptr;
+	WorldTransform worldTransform_;
+	ViewProjection viewProjection_;
+
+	uint32_t soundDataHandle_ = 0;
+	uint32_t voiceHandle_ = 0;
+	int32_t value_ = 0;
 
 	/// <summary>
 	/// 毎フレーム処理
