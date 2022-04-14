@@ -31,6 +31,16 @@ class GameScene {
 	/// 初期化
 	/// </summary>
 	void Initialize();
+	//スプライト
+	Sprite* sprite_ = nullptr;
+	Model* model_ = nullptr;
+	//ワールドトランスフォーム
+	WorldTransform worldTransform_;
+	//ビュープロジェクション
+	ViewProjection viewProjection_; 
+	//値を表示したい変数
+	int32_t value_ = 0;
+
 
 	/// <summary>
 	/// 毎フレーム処理
@@ -41,6 +51,10 @@ class GameScene {
 	/// 描画
 	/// </summary>
 	void Draw();
+
+	uint32_t textureHandle_ = 0;
+	uint32_t soundDateHandle_ = 0;
+	uint32_t voicHandle_ = 0;
 
   private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
