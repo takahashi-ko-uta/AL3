@@ -33,11 +33,13 @@ class GameScene {
 	void Initialize();
 	uint32_t textureHandle_ = 0;
 	//ワールドトランスフォーム
-	WorldTransform worldTransform_;
+	WorldTransform worldTransform_[100];
 	//ビュープロジェクション
 	ViewProjection viewProjection_; 
 	//3dモデル
 	Model* model_ = nullptr;
+	//カメラ上方向の角度
+	float viewAngle = 0.0f;
 
 	/// <summary>
 	/// 毎フレーム処理
