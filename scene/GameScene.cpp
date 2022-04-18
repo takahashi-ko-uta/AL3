@@ -30,18 +30,25 @@ void GameScene::Initialize() {
 	//乱数範囲（座標用）
 	std::uniform_real_distribution<float> posDist(-10.0f, 10.0f);
 
-	for (size_t i = 0; i < _countof(worldTransform_); i++) 
-	{
-		// x,y,z方向のスケーリング設定
-		worldTransform_[i].scale_ = {1.0f, 1.0f, 1.0f};
-		// x,y,z軸周りの回転角を設定
-		worldTransform_[i].rotation_ = {rotDist(engine), rotDist(engine), rotDist(engine)};
-		// x,y,z軸周りの平行移動を設定
-		worldTransform_[i].translation_ = {posDist(engine), posDist(engine), posDist(engine)};
-		//ワールドトランスフォーム
-		worldTransform_[i].Initialize();
-	}
+	//for (size_t i = 0; i < _countof(worldTransform_); i++) 
+	//{
+	//	// x,y,z方向のスケーリング設定
+	//	worldTransform_[i].scale_ = {1.0f, 1.0f, 1.0f};
+	//	// x,y,z軸周りの回転角を設定
+	//	worldTransform_[i].rotation_ = {rotDist(engine), rotDist(engine), rotDist(engine)};
+	//	// x,y,z軸周りの平行移動を設定
+	//	worldTransform_[i].translation_ = {posDist(engine), posDist(engine), posDist(engine)};
+	//	//ワールドトランスフォーム
+	//	worldTransform_[i].Initialize();
+	//}
 	
+	//親(0番)
+	worldTransform_[0].Initialize();
+	//子(1番)
+	worldTransform_[1].translation_ = {0, 4.5f, 0};
+	worldTransform_[1].parent_ = &worldTransform_[0];
+	worldTransform_[1].Initialize();
+
 	//カメラ視点座標を設定
 	viewProjection_.eye = {0, 0, -50};
 	//カメラの注視点座標を設定
@@ -196,7 +203,16 @@ void GameScene::Update()
 		debugText_->SetPos(50, 130);
 		debugText_->Printf("nearZ:%f", viewProjection_.nearZ);
 	}
+	//キャラクターの移動ベクトル
+	{
+		//キャラクターの移動ベクトル
+		XMFLOAT3 move = {0, 0, 0};
 
+		//キャラクターの移動速さ
+		const float kCharactSpeed = 0.2f;
+		//押した方向で移動ベクトルを変更
+
+	}
 }
 
 void GameScene::Draw() {
